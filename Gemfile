@@ -27,6 +27,7 @@ end
 group :development, :test do
   gem 'sqlite3'
   gem 'factory_girl_rails', require: false
+  gem 'faker'
   gem 'rspec-rails'
 end
 
