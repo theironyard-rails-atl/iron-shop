@@ -3,6 +3,9 @@ class Invoice < ActiveRecord::Base
   validates :amount, numericality: { greater_than_or_equal_to: 0 }
 
   belongs_to :shopper, class_name: "User"
+  has_many :items
 
-  has_many :items, foreign_key: "invoice_id"
+  def paid?
+
+  end
 end
