@@ -11,13 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140922181021) do
+ActiveRecord::Schema.define(version: 20140922191946) do
 
   create_table "invoices", force: true do |t|
     t.float    "amount"
     t.integer  "shopper_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "invoices_items", id: false, force: true do |t|
+    t.integer "invoice_id"
+    t.integer "item_id"
   end
 
   create_table "items", force: true do |t|
