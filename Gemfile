@@ -11,7 +11,6 @@ gem 'haml-rails'
 gem 'figaro'
 gem 'gon'
 gem 'bullet'
-gem 'jquery-rails'
 
 
 gem 'jbuilder', '~> 2.0'
