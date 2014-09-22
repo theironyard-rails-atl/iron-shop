@@ -24,7 +24,6 @@ gem 'rails-assets-jquery-ujs'
 gem 'rails-assets-bootstrap'
 gem 'rails-assets-angular'
 gem 'rails-assets-angular-bootstrap'
-gem 'rails-assets-fontawesome'
 
 
 group :development do
