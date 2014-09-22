@@ -1,6 +1,6 @@
 # Test factories
 # from https://github.com/thoughtbot/factory_girl/wiki/Testing-all-Factories-%28with-RSpec%29
-require 'spec_helper'
+require 'rails_helper'
 
 FactoryGirl.factories.map(&:name).each do |factory_name|
   describe "Factory :#{factory_name}" do
