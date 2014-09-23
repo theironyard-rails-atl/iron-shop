@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   root to: "static_pages#home"
 
-  resource :invoices, only: [:show] do
+  resources :invoices, only: [:show] do
     member do
       post :close
     end

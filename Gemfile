@@ -18,6 +18,7 @@ gem 'figaro'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'pg'
+gem 'stripe'
 
 group :production do
   gem 'rails_12factor'
