@@ -1,4 +1,6 @@
 class CardProcessor
+  attr_reader :charge
+
   # Refer to this as CardProcessor::ProcessingError
   class ProcessingError < StandardError ; end
 
@@ -55,7 +57,7 @@ private
 
   def process_charge! customer
     # Make a POST call to actually charge user's card
-    Stripe::Charge.create(
+    @charge = Stripe::Charge.create(
       :customer    => customer.id,
       :amount      => @invoice.amount_in_cents,
       :description => 'Iron Shop customer',

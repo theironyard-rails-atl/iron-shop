@@ -10,6 +10,10 @@ describe CardProcessor do
     processor.process
 
     expect( @invoice.paid? ).to be true
+
+    charge = processor.charge
+    expect( charge.id ).not_to be nil
+    expect( charge.card.brand ).to eq 'Visa'
   end
 
   it 'handles declined cards' do
