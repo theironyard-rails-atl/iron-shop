@@ -11,10 +11,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140922215852) do
+ActiveRecord::Schema.define(version: 20140923184620) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "invoiceitems", force: true do |t|
+    t.integer "invoice_id"
+    t.integer "item_id"
+  end
+
+  add_index "invoiceitems", ["invoice_id"], name: "index_invoiceitems_on_invoice_id", using: :btree
+  add_index "invoiceitems", ["item_id"], name: "index_invoiceitems_on_item_id", using: :btree
+
+  create_table "invoices", force: true do |t|
+    t.integer  "user_id"
+    t.decimal  "amount",     precision: 7, scale: 2
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "paid",                               default: false
+  end
+
+  add_index "invoices", ["user_id"], name: "index_invoices_on_user_id", using: :btree
+
+  create_table "items", force: true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.decimal  "price",       precision: 7, scale: 2
+    t.integer  "seller_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
