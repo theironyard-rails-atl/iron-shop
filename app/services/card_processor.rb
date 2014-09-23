@@ -28,7 +28,7 @@ class CardProcessor
           token.id
   end
 
-  def self. valid_token
+  def self.valid_token
     token_for_card '4242424242424242'
   end
 
