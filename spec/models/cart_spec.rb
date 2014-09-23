@@ -5,7 +5,7 @@ describe Cart do
     @shopper = create :user, :shopper
     @cart    = Cart.new @shopper
     [1.00, 5432.99, 161.8].each do |price|
-      @cart.add( create :item, price: price )
+      @cart.add( create(:item, price: price) )
     end
   end
 
@@ -33,7 +33,9 @@ describe Cart do
       @cart.checkout!
     end.to change { @shopper.invoices.count }.from(0).to(1)
 
+    
     invoice = @shopper.invoices.last
+    
     expect( invoice.amount ).to eq @cart.total
     expect( invoice.paid? ).to eq false
   end
