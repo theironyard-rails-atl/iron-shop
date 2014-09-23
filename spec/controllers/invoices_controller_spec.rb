@@ -6,7 +6,7 @@ describe InvoicesController do
     sign_in @invoice.user
   end
 
-  it 'takes a valid payment' do
+  it 'takes a valid payment', :vcr do
     post :close, id: @invoice.id, stripeToken: CardProcessor.valid_token
     # @invoice = Invoice.find @invoice.id
     @invoice.reload # <- go back to DB and make sure we're up to date
@@ -15,7 +15,7 @@ describe InvoicesController do
     expect( @invoice.paid? ).to be true
   end
 
-  it 'notifies on payment failure' do
+  it 'notifies on payment failure', :vcr do
     post :close, id: @invoice.id, stripeToken: CardProcessor.declined_token
     @invoice.reload
 

@@ -5,7 +5,7 @@ describe CardProcessor do
     @invoice = create :invoice
   end
 
-  it 'marks the invoice as paid' do
+  it 'marks the invoice as paid', :vcr do
     processor = CardProcessor.new @invoice, CardProcessor.valid_token
     processor.process
 
@@ -16,7 +16,7 @@ describe CardProcessor do
     expect( charge.card.brand ).to eq 'Visa'
   end
 
-  it 'handles declined cards' do
+  it 'handles declined cards', :vcr do
     processor = CardProcessor.new @invoice, CardProcessor.declined_token
     expect do
       processor.process
