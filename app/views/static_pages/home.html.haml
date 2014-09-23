@@ -1,4 +1,16 @@
 .page-header
   %h1
     Iron Shop
-    %small Rulling ecomerce with an Iron fist.
+    %small Ruling ecommerce with an Iron fist.
+
+
+%table.table.table-striped
+  %thead
+    %tr
+      %th Item
+      %th price
+  %tbody
+    - @items.each do |item|
+      %tr
+        %th= link_to item.title, item_path(item)
+        %th= item.price
