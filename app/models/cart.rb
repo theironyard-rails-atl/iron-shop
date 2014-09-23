@@ -11,11 +11,10 @@ class Cart
   end
 
   def subtotal
-    cost = 0
-    @items.each do |item|
-     cost += item.price
+    @items.reduce(0) do |total,item|
+      total +=  item.price
+      total 
     end
-    cost 
   end
 
   def total
@@ -23,8 +22,7 @@ class Cart
   end
 
   def checkout!
-    a = Invoice.create(user: @user, amount: total)
-    
+    Invoice.create(user: @user, amount: total)
   end
 
 end

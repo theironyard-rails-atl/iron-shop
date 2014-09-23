@@ -9,7 +9,6 @@ describe Invoice do
   end
 
   it 'contains items' do
-    binding.pry
     invoice = create :invoice
     3.times { invoice.items << create(:item) }
     expect( invoice.items.count ).to eq 3
