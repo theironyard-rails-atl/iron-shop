@@ -5,7 +5,7 @@ describe Item do
     it "requires a #{field}" do
       # item = build :item, :price => nil
       item = build :item, field => nil
- o     expect( item.valid? ).to be false
+      expect( item.valid? ).to be false
     end
   end
 
