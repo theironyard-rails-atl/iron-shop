@@ -18,23 +18,28 @@ class CardProcessor
     # send email?
   end
 
-  def self.token_for_card card_number
-    # v mimics what the checkout.js does to generate a token
-    token = Stripe::Token.create(card: {
-      number:    card_number,
-      exp_month: 9,
-      exp_year:  2015,
-      cvc:       '112'
-    })
-    token.id
-  end
+  class << self
+    # ^- everything inside this block runs on the
+    #   object's class
 
-  def self.valid_token
-    token_for_card '4242424242424242'
-  end
+    def token_for_card card_number
+      # v mimics what the checkout.js does to generate a token
+      token = Stripe::Token.create(card: {
+        number:    card_number,
+        exp_month: 9,
+        exp_year:  2015,
+        cvc:       '112'
+      })
+      token.id
+    end
 
-  def self.declined_token
-    token_for_card '4000000000000002'
+    def valid_token
+      token_for_card '4242424242424242'
+    end
+
+    def declined_token
+      token_for_card '4000000000000002'
+    end
   end
 
 private

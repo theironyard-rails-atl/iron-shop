@@ -7,12 +7,13 @@ class InvoicesController < ApplicationController
 
   def close
     @invoice = current_user.invoices.find params[:id]
-    CardProcessor.new(@invoice, params[:stripeToken]).process
 
-    flash[:success] = "Your purchase went through"
-    redirect_to @invoice
-  rescue CardProcessor::ProcessingError => e
-    flash[:error] = e.message
+    begin
+      CardProcessor.new(@invoice, params[:stripeToken]).process
+      flash[:success] = "Your purchase went through"
+    rescue CardProcessor::ProcessingError => e
+      flash[:error] = e.message
+    end
     redirect_to @invoice
   end
 end
