@@ -11,7 +11,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140826192403) do
+ActiveRecord::Schema.define(version: 20140923195202) do
+
+  create_table "invoices", force: true do |t|
+    t.float    "amount"
+    t.integer  "shopper_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "paid",       default: false
+  end
+
+  create_table "items", force: true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.float    "price"
+    t.integer  "seller_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "invoice_id"
+  end
+
+  create_table "relationships", force: true do |t|
+    t.integer  "invoice_id"
+    t.integer  "item_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "",    null: false
@@ -26,6 +51,9 @@ ActiveRecord::Schema.define(version: 20140826192403) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "admin",                  default: false
+    t.boolean  "shopper",                default: true
+    t.boolean  "seller",                 default: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe Invoice do
-  %i(user amount).each do |field|
+  %i(shopper amount).each do |field|
     it "requires a #{field}" do
       invoice = build :invoice, field => nil
       expect( invoice.valid? ).to eq false
