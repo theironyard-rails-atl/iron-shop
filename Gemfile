@@ -16,6 +16,7 @@ gem 'devise'
 gem 'cancancan'
 
 gem 'figaro'
+gem 'stripe'
 
 group :development do
   gem 'better_errors'
