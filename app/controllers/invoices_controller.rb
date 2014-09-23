@@ -11,7 +11,7 @@ class InvoicesController < ApplicationController
 
     flash[:success] = "Your purchase went through"
     redirect_to @invoice
-  rescue Stripe::CardError => e
+  rescue CardProcessor::ProcessingError => e
     flash[:error] = e.message
     redirect_to @invoice
   end

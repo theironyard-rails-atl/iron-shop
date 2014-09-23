@@ -16,7 +16,7 @@ describe CardProcessor do
     processor = CardProcessor.new @invoice, CardProcessor.declined_token
     expect do
       processor.process
-    end.to raise_error Stripe::CardError
+    end.to raise_error CardProcessor::ProcessingError
 
     expect( @invoice.paid? ).to be false
   end
