@@ -29,7 +29,6 @@ gem 'rails-assets-angular-bootstrap'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
-  gem 'pry-rails'
   gem 'quiet_assets'
   gem 'spring'
   gem 'spring-commands-rspec'
@@ -37,6 +36,7 @@ group :development do
 end
 
 group :development, :test do
+  gem 'pry-rails'
   gem 'pg'
   gem 'factory_girl_rails', require: false
   gem 'faker'
