@@ -1,4 +1,7 @@
 class Cart
+  attr_accessor :tax_rate
+
+
   def initialize shopper, options = {}
     @tax_rate = options[:tax_rate] || 0.04
     @subtotal = 0
@@ -25,6 +28,7 @@ class Cart
 
   def total
     @total = @subtotal * ( 1 + @tax_rate )
+    @total.round(2)
   end
 
   def remove
@@ -34,7 +38,7 @@ class Cart
   def checkout!
     invoice = @shopper.invoices.new
     @cart.each do |item|
-      invoice << item
+      invoice.items << item
     end
     invoice.amount = self.total
     invoice.save!
