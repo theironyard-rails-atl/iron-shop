@@ -1,5 +1,5 @@
 %h1
-  Invoice
+  #{@invoice.paid? ? 'Paid' : 'Unpaid'} Invoice
   %small= @invoice.created_at
 
 %table.table.table-striped
