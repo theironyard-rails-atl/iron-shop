@@ -11,22 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20140922203528) do
-=======
 ActiveRecord::Schema.define(version: 20140923134407) do
->>>>>>> master
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "invoices", force: true do |t|
     t.integer  "user_id"
-<<<<<<< HEAD
-    t.float    "amount"
-=======
     t.decimal  "amount",     precision: 7, scale: 2
->>>>>>> master
     t.datetime "created_at"
     t.datetime "updated_at"
   end
