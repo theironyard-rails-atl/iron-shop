@@ -25,6 +25,7 @@ gem 'rails-assets-bootstrap'
 gem 'rails-assets-angular'
 gem 'rails-assets-angular-bootstrap'
 
+gem 'pg_search'
 
 group :development do
   # gem 'better_errors'
