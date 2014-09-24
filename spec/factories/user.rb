@@ -12,4 +12,10 @@ FactoryGirl.define do
   trait :seller do
     role 'seller'
   end
+  trait :admin do
+    role 'admin'
+  end
+  trait :banned do
+    role 'banned'
+  end
 end

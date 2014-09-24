@@ -25,4 +25,8 @@ feature 'Selling' do
 
     expect(page).not_to have_content "Create Item"
   end
+
+  # Add further CanCan authorization specs
+  it 'allows sellers to delete posted items they own'
+  it 'does not allow sellers to delete other sellers items'
 end
