@@ -4,6 +4,6 @@ class InvoicesController < ApplicationController
   end
 
   def close
-    
+
   end
 end
