@@ -21,6 +21,8 @@ gem 'stripe'
 gem 'sidekiq'
 gem 'sinatra'
 
+gem 'clockwork'
+
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
