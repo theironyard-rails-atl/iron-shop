@@ -1,21 +1,11 @@
-class Cart
-  attr_accessor :tax_rate
+class Cart < ActiveRecord::Base
 
-
-  def initialize shopper, options = {}
-    @tax_rate = options[:tax_rate] || 0.04
-    @subtotal = 0
-    @cart = []
-    @shopper = shopper
-  end
+  has_many :carts_items
+  has_many :items, through: :carts_items
+  belongs_to :shopper, class_name: "User"
 
   def add item
-    @cart << item
-    @subtotal = @subtotal + item.price
-  end
-
-  def tax_rate
-    @tax_rate
+    @cart = CartItem.new
   end
 
   def items

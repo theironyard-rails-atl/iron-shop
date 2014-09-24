@@ -31,6 +31,9 @@ GEM
     angular-rails (0.0.12)
       coffee-script (~> 2.2.0)
       rails
+    annotate (2.6.5)
+      activerecord (>= 2.3.0)
+      rake (>= 0.8.7)
     arel (5.0.1.20140414130214)
     bcrypt (3.1.7)
     better_errors (2.0.0)
@@ -47,6 +50,8 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    celluloid (0.15.2)
+      timers (~> 1.1.0)
     coderay (1.1.0)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
@@ -55,6 +60,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.8.0)
+    connection_pool (2.0.0)
     debug_inspector (0.0.2)
     devise (3.3.0)
       bcrypt (~> 3.0)
@@ -91,6 +97,8 @@ GEM
     json (1.8.1)
     launchy (2.4.2)
       addressable (~> 2.3)
+    letter_opener (1.2.0)
+      launchy (~> 2.2)
     mail (2.6.1)
       mime-types (>= 1.16, < 3)
     method_source (0.8.2)
@@ -130,6 +138,9 @@ GEM
     rake (10.3.2)
     rdoc (4.1.2)
       json (~> 1.4)
+    redis (3.1.0)
+    redis-namespace (1.5.1)
+      redis (~> 3.0, >= 3.0.4)
     rspec-core (3.1.4)
       rspec-support (~> 3.1.0)
     rspec-expectations (3.1.1)
@@ -155,6 +166,12 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
+    sidekiq (3.2.5)
+      celluloid (= 0.15.2)
+      connection_pool (>= 2.0.0)
+      json
+      redis (>= 3.0.6)
+      redis-namespace (>= 1.3.1)
     simplecov (0.9.1)
       docile (~> 1.1.0)
       multi_json (~> 1.0)
@@ -177,6 +194,7 @@ GEM
     thor (0.19.1)
     thread_safe (0.3.4)
     tilt (1.4.1)
+    timers (1.1.0)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     uglifier (2.5.3)
@@ -192,6 +210,7 @@ PLATFORMS
 
 DEPENDENCIES
   angular-rails
+  annotate
   better_errors
   binding_of_caller
   cancancan
@@ -204,12 +223,14 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   launchy
+  letter_opener
   pry-rails
   quiet_assets
   rails
   rspec-rails
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
+  sidekiq
   simplecov
   spring
   spring-commands-rspec
