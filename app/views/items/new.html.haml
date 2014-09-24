@@ -1,0 +1,16 @@
+%h3 List An Item!
+
+= form_for @item, url: {action: "create"}, html: {class: "form"} do |i|
+  %p Title
+  = i.text_field :title
+  %br
+  %br
+  %p Description
+  = i.text_area :description
+  %br
+  %br
+  %p Price
+  = i.number_field :price
+  %br
+  %br
+  = i.submit "Submit", class: "btn btn-primary"
