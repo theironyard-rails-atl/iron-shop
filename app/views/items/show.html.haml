@@ -1,9 +1,10 @@
 .page-header
   %h1
     = @item.title
-    %small= "$#{@item.price}0"
+    %small= "$#{@item.price}"
     .pull-right
-      %small
-        =link_to "Edit", edit_item_path
+      -if can? :manage, :items
+        %small
+          =link_to "Edit", edit_item_path
 
 %p= @item.description
