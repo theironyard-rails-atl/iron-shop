@@ -5,6 +5,7 @@ class Cart < ActiveRecord::Base
   belongs_to :shopper, class_name: "User"
 
   def add item
+    @cart = CartItem.new
   end
 
   def items

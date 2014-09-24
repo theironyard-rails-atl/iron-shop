@@ -16,4 +16,9 @@ class CardProcessor
       :currency    => 'usd'
     )
   end
+
+  def send_receipt
+    ## InvoiceMailler.receipt(@invoice).deliver
+    MailReceiptWorker.perform_async @invoice.id
+  end
 end
