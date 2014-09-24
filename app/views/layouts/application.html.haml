@@ -14,12 +14,13 @@
     %nav.navbar.navbar-default
       .container
         .navbar-header
-          = link_to "", root_path, class: "navbar-brand"
+          = link_to "Home", root_path, class: "navbar-brand"
 
         %ul.nav.navbar-nav
           %li= link_to "Shopping Cart", cart_path
           -#= '{{@cart.items.count}}'
           -#= '{{@cart.total}}'
+
 
         %ul.nav.navbar-nav.pull-right
           - if current_user
