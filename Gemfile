@@ -19,10 +19,17 @@ gem 'pg_search'
 
 gem 'devise'
 gem 'cancancan'
+
+gem 'figaro'
 gem 'angular-rails'
 
+gem 'sidekiq'
+gem 'sinatra'
+
 group :development do
+  gem 'annotate'
   gem 'better_errors'
+  gem 'letter_opener'
   gem 'binding_of_caller'
   gem 'pry-rails'
   gem 'quiet_assets'

@@ -1,0 +1,9 @@
+.page-header
+  %h1
+    = @item.title
+    %small= "$#{@item.price}0"
+    .pull-right
+      %small
+        =link_to "Edit", edit_item_path
+
+%p= @item.description

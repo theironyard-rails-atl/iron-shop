@@ -1,4 +1,6 @@
 class StaticPagesController < ApplicationController
+
+
   def home
     if (params[:query] == "") || (!params[:query])
       @items = Item.all
@@ -9,4 +11,6 @@ class StaticPagesController < ApplicationController
     # elastic/tire
     # @items = Item.search(params)
   end
+
+
 end

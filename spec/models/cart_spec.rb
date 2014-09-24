@@ -1,3 +1,12 @@
+# == Schema Information
+#
+# Table name: carts
+#
+#  id         :integer          not null, primary key
+#  shopper_id :integer
+#  tax_rate   :integer
+#
+
 require 'rails_helper'
 
 describe Cart do
