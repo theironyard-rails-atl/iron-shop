@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
     :recoverable, :rememberable, :trackable, :validatable
   has_many :bought_items, through: :invoice, source: :items
-  has_many :sold_items, source: :items
+  has_many :sold_items, source: :items, class_name: "Item"
   has_many :invoices
   ROLES= %i[shopper seller admin]
 end

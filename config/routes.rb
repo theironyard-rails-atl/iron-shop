@@ -8,4 +8,8 @@ Rails.application.routes.draw do
       post :close
     end
   end
+
+  resources :items
+
+  get '*path' => 'static_pages#home'
 end

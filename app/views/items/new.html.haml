@@ -1,0 +1,12 @@
+%h1 Create New Item
+=form_for @item do |f|
+
+  .form_group
+    -# =f.label :content, "Item"
+    =f.label :title, "Title"
+    =f.text_field :title, class: "form-control"
+    =f.label :description, "Description"
+    =f.text_area :description, class: "form-control"
+    =f.label :price, "Price"
+    =f.text_field :price, class: "form-control"
+    %button{:class => 'btn btn-default'}Create Item
