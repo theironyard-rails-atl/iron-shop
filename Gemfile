@@ -12,8 +12,6 @@ gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
-gem 'elasticsearch', '~> 0.4'
-gem 'tire'
 gem 'pg'
 gem 'pg_search'
 
