@@ -1,5 +1,6 @@
 %div#search_form
   = form_tag root_path, method: 'GET', class: "form" do
-    .form-group.col-lg-11
+    .form-group.col-lg-10
       %input.form-control#search_input{ type: 'text', name: 'search', placeholder: 'Search for items' }
     = submit_tag 'Search', class: "btn btn-primary"
+    = link_to 'Reset', root_path, class: "btn btn-primary"
