@@ -76,6 +76,6 @@ private
 
     # Register that this needs to be sent, and do
     #   so when a worker is available
-    MailReceiptWorker.perform_async @invoice.id
+    MailReceiptWorker.perform_later @invoice
   end
 end
