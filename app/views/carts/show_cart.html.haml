@@ -6,10 +6,10 @@
         .text-center
           %strong Shopping Cart
       %ul.list-group
-        %li.list-group-item.clearfix(ng-repeat='item in items')
+        %li.list-group-item.clearfix.item(ng-repeat='item in items')
           %p
             %strong= '{{item.title}}'
-            %a.btn.btn-warning.btn-xs.pull-right(ng-click='delete_item(item.id)') Remove
+            %a.btn.btn-warning.btn-xs.pull-right.remove-button(ng-click='delete_item(item.id)')= "Remove"
             %em.small= ' by {{item.seller_id}}'
             .pull-right= '{{item.price | currency}}'
           %p= '{{item.description}}'
