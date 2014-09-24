@@ -15,16 +15,16 @@ ActiveRecord::Schema.define(version: 20140923182514) do
 
   create_table "carts", force: true do |t|
     t.integer "shopper_id"
-    t.integer "tax_rate"
+    t.decimal "tax_rate", precision: 7, scale: 2, default: 0.04, null: false
   end
 
-  create_table "carts_items", force: true do |t|
+  create_table "cart_items", force: true do |t|
     t.integer "cart_id"
     t.integer "item_id"
   end
 
   create_table "invoices", force: true do |t|
-    t.float    "amount"
+    t.decimal  "amount",      precision: 7, scale: 2
     t.integer  "shopper_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 20140923182514) do
   create_table "items", force: true do |t|
     t.string   "title"
     t.text     "description"
-    t.float    "price"
+    t.decimal  "price",       precision: 7, scale: 2
     t.integer  "seller_id"
     t.datetime "created_at"
     t.datetime "updated_at"

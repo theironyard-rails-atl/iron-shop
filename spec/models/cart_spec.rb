@@ -12,7 +12,7 @@ require 'rails_helper'
 describe Cart do
   before :each do
     @shopper = create :user, :shopper
-    @cart    = Cart.new @shopper
+    @cart    = @shopper.carts.new
     [1.00, 5432.99, 161.8].each do |price|
       @cart.add( create :item, price: price )
     end
@@ -33,7 +33,7 @@ describe Cart do
 
   it 'can set a different tax rate' do
     @cart.tax_rate = 0.07
-    expect( @cart.tax_rate ).to eq 0.07
+    expect( @cart.tax_rate.to_f ).to eq 0.07
     expect( @cart.total ).to eq 5987.50
   end
 
@@ -43,7 +43,6 @@ describe Cart do
     end.to change { @shopper.invoices.count }.from(0).to(1)
 
     invoice = @shopper.invoices.last
-    binding.pry
     expect( invoice.amount ).to eq @cart.total
     expect( invoice.paid? ).to eq false
   end
