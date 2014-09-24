@@ -5,17 +5,19 @@
 
 = form_tag root_path, class: "form", method: :get do
   .form-group.col-lg-10
-    = text_field_tag :query, params[:query], class: "form-control"
+    = text_field_tag :query, params[:query], class: "form-control", placeholder: "Search for items"
   = submit_tag "Search", name: nil, class: "btn"
   = link_to "Reset", root_path
-
+  %hr
 %table.table.table-striped
   %thead
     %tr
       %th Item
-      %th price
+      %th Description
+      %th Price
   %tbody
     - @items.each do |item|
       %tr
-        %th= link_to item.title, item_path(item)
-        %th= item.price
+        %td= link_to item.title, item_path(item)
+        %td= item.description.truncate(100)
+        %td= item.price
