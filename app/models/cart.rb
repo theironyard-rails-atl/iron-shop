@@ -1,11 +1,16 @@
 class Cart
   attr_accessor :items, :tax_rate
 
-  def initialize shopper
+  def initialize shopper, opts={}
     @shopper = shopper
     @tax_rate = 0.04
-    @items = []
+    @items = if opts[:item_ids]
+      Item.find(opts[:item_ids])
+    else
+      []
+    end
   end
+
 
   def add item
     @items << item
