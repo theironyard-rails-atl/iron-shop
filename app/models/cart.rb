@@ -27,7 +27,7 @@ class Cart < ActiveRecord::Base
   end
 
   def remove
-
+    ##TODO
   end
 
   def checkout!
