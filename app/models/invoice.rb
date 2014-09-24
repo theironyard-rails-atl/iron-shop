@@ -3,6 +3,7 @@ class Invoice < ActiveRecord::Base
   validates :amount, numericality: { greater_than_or_equal_to: 0 }
 
   belongs_to :shopper, class_name: "User"
-  has_many :items
+  has_many :invoice_items
+  has_many :items, through: :invoice_items
 
 end

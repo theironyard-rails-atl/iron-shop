@@ -6,5 +6,7 @@ class User < ActiveRecord::Base
 
   has_many :items, foreign_key: 'seller_id'
   has_many :invoices, foreign_key: 'shopper_id'
+
+  has_many :carts, foreign_key: 'shopper_id'
   # has_and_belongs_to_many :invoices
 end
