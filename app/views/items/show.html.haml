@@ -1,0 +1,38 @@
+.well.show-item
+  %h1= @item.title
+  %p= @item.description
+  %h4= "$#{@item.price}"
+  -if current_user.id == @item.seller_id
+    %button.edit Edit Listing
+
+.well.edit-form
+  %h3 Edit your listing with the form below:
+  = form_for(@item, url: item_path(@item), html: {method: "patch"}) do |i|
+    %p Title
+    = i.text_field :title
+    %br
+    %br
+    %p Description
+    = i.text_area :description
+    %br
+    %br
+    %p Price
+    = i.number_field :price
+    %br
+    %br
+    = i.submit "Submit", class: "btn btn-primary"
+  %br
+  %button.btn.btn-alert.cancel Cancel
+
+:javascript
+  $(function() {
+    $('.edit-form').hide();
+    $('.edit').click(function(){
+      $('.edit-form').show();
+      $('.show-item').hide();
+    });
+    $('.cancel').click(function(){
+      $('.edit-form').hide();
+      $('.show-item').show();
+    });
+  });

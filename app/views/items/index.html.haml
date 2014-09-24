@@ -1,0 +1,9 @@
+- if current_user.role == "seller"
+  %h2=link_to "Create a New Listing", new_item_path
+  %br
+
+- @items.reverse.each do |item|
+  .well
+    %h3= link_to item.title, item
+    %p= item.description
+    %h4= "$#{item.price}"

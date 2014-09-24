@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  root to: "static_pages#home"
+  resources :items, only: [:index, :new, :create, :update, :show]
+
+  root to: "items#index"
 end
