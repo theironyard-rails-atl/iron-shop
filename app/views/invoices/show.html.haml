@@ -1,0 +1,15 @@
+%h1
+  Invoice
+  %small= @invoice.created_at
+
+%table.table.table-striped
+  %thead
+    %tr
+      %th Item
+      %th Price
+  %tbody
+    - @invoice.items.each do |item|
+      %tr
+        %td= item.title
+        %td= item.price
+
