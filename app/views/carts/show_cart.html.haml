@@ -1,0 +1,25 @@
+.row
+  .col-md-2
+  .col-md-8
+    .panel.panel-default
+      .panel-heading
+        .text-center
+          %strong Shopping Cart
+      %ul.list-group
+        %li.list-group-item.clearfix(ng-repeat='item in items')
+          %p
+            %strong= '{{item.title}}'
+            %a.btn.btn-warning.btn-xs.pull-right(ng-click='delete_item(item.id)') Remove
+            %em.small= ' by {{item.seller_id}}'
+            .pull-right= '{{item.price | currency}}'
+          %p= '{{item.description}}'
+        %li.list-group-item.clearfix
+          %h3.pull-left Subtotal
+          %h3.pull-right= '{{subtotal | currency}}'
+        %li.list-group-item.clearfix
+          %h3.pull-left Tax Rate
+          %h3.pull-right= '{{tax_rate * 100}}%'
+        %li.list-group-item.clearfix
+          %h3.pull-left Total
+          %h3.pull-right= '{{total | currency}}'
+  .col-md-2
