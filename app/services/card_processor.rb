@@ -71,6 +71,11 @@ private
   end
 
   def send_receipt
-    InvoiceMailer.receipt(@invoice).deliver
+    # Deliver mail now, and wait to finish
+    #InvoiceMailer.receipt(@invoice).deliver
+
+    # Register that this needs to be sent, and do
+    #   so when a worker is available
+    MailReceiptWorker.perform_async @invoice.id
   end
 end

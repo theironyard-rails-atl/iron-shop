@@ -18,6 +18,8 @@ gem 'cancancan'
 gem 'figaro'
 gem 'stripe'
 
+gem 'sidekiq'
+
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
