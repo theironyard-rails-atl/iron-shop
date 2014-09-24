@@ -4,5 +4,4 @@ class Invoice < ActiveRecord::Base
 
   belongs_to :shopper, class_name: "User"
   has_many :items
-
 end

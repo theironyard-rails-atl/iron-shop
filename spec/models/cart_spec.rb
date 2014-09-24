@@ -34,7 +34,6 @@ describe Cart do
     end.to change { @shopper.invoices.count }.from(0).to(1)
 
     invoice = @shopper.invoices.last
-    binding.pry
     expect( invoice.amount ).to eq @cart.total
     expect( invoice.paid? ).to eq false
   end

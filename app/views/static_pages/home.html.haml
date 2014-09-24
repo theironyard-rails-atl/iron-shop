@@ -1,0 +1,15 @@
+= form_tag root_path, class: "form", method: :get do
+  .form-group.col-lg-10
+    = text_field_tag :query, params[:query], class: "form-control"
+  = submit_tag "Search", name: nil, class: "btn"
+  = link_to "Reset", root_path
+
+%table.table
+  %thead
+    %th Item
+    %th Description
+  %tbody
+    - @items.each do |item|
+      %tr
+        %td= item.title
+        %td= item.description
