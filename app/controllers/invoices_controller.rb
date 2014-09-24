@@ -4,9 +4,11 @@ class InvoicesController < ApplicationController
   before_action :get_invoice 
   
  def show
+   authorize! :buy, @invoice
  end
   
  def close 
+   authorize! :buy, @invoice
    begin
      CardProcessor.new(@invoice, params[:stripeToken]).process
      flash[:success] = "Your purchase was successful"
