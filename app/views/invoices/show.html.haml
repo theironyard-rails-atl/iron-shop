@@ -1,5 +1,5 @@
 %h1
-  Invoice
+  #{@invoice.paid? ? 'Paid' : 'Not Paid'} Invoice
   %small= @invoice.created_at
 
 %table.table.table-striped
@@ -12,4 +12,13 @@
       %tr
         %td= item.title
         %td= item.price
+      %tr 
+        %th Total
+        %th= @invoice.amount
 
+=form_tag close_invoice_path(@invoice) do 
+  %script.stripe-button{ 'src' => 'https://checkout.stripe.com/checkout.js',
+    'data-key' => ENV['STRIPE_PUBLIC_KEY'],
+    'data-name' => 'Iron Shop',
+    'data-description' => "#{@invoice.items.count} items",
+    'data-amount' => @invoice.amount_in_cents }

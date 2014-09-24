@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: invoices
+#
+#  id         :integer          not null, primary key
+#  user_id    :integer
+#  amount     :decimal(7, 2)
+#  created_at :datetime
+#  updated_at :datetime
+#  paid       :boolean
+#
+
 require 'rails_helper'
 
 describe Invoice do
