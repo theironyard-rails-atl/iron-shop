@@ -76,6 +76,9 @@ private
 
     # Register that this needs to be sent, and do
     #   so when a worker is available
-    MailReceiptWorker.perform_later @invoice
+    #MailReceiptWorker.perform_later @invoice
+
+    # With Rails 4.2
+    InvoiceMailer.receipt(@invoice).deliver_later
   end
 end

@@ -38,4 +38,6 @@ Rails.application.configure do
   # Config for Devise
   config.action_mailer.default_url_options = { host: 'localhost:3000' }
   config.action_mailer.delivery_method = :letter_opener
+
+  config.active_job.queue_adapter = :sidekiq
 end
