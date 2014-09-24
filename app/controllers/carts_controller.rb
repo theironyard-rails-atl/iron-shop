@@ -24,7 +24,7 @@ class CartsController < ApplicationController
   end
 
   def remove_cart
-    item_id = params[:id]
+    item_id = params[:id].to_i
     if Item.find_by_id(item_id)
       session[:cart].delete(item_id)
     end

@@ -24,7 +24,7 @@ class Cart
   end
 
   def subtotal
-    @items.map{ |item| item.price }.reduce(:+)
+    @items.map{ |item| item.price }.reduce(:+) || 0
   end
 
   def total

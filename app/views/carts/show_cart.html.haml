@@ -9,7 +9,7 @@
         %li.list-group-item.clearfix(ng-repeat='item in items')
           %p
             %strong= '{{item.title}}'
-            %a.btn.btn-warning.btn-xs.pull-right= link_to "Remove", nil, :method => :delete, :"ng-href" => '/cart/remove-cart/{{item.id}}'
+            %a.btn.btn-warning.btn-xs.pull-right(ng-click='delete_item(item.id)') Remove
             %em.small= ' by {{item.seller_id}}'
             .pull-right= '{{item.price | currency}}'
           %p= '{{item.description}}'
