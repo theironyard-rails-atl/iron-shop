@@ -1,5 +1,5 @@
 class CartsController < ApplicationController
-  respond_to :json, except: :show_cart
+  respond_to :json, except: [:show_cart, :add_cart]
   before_action :authenticate_user!
   before_action :dummy_data
 
@@ -17,16 +17,20 @@ class CartsController < ApplicationController
   end
 
   def add_cart
-    item_id = params[:item_id]
+    binding.pry
+    item_id = params[:id]
+    binding.pry
     if Item.find_by_id(item_id)
+      binding.pry
       session[:cart] << item_id
     end
+    binding.pry
     @cart = build_cart
-    render 'data'
+    redirect_to cart_path
   end
 
   def remove_cart
-    item_id = params[:item_id]
+    item_id = params[:id]
     if Item.find_by_id(item_id)
       session[:cart].delete(item_id)
     end
