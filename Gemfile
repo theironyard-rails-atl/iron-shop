@@ -19,6 +19,7 @@ gem 'figaro'
 gem 'stripe'
 
 gem 'sidekiq'
+gem 'sinatra'
 
 group :development do
   gem 'better_errors'

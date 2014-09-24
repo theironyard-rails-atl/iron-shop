@@ -1,3 +1,5 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
   devise_for :users
 
@@ -7,5 +9,11 @@ Rails.application.routes.draw do
     member do
       post :close
     end
+  end
+
+  # This is a Sinatra app
+  # This should be secured using a Devise construct like -v
+  authenticate :user do
+    mount Sidekiq::Web => '/sidekiq'
   end
 end
