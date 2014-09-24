@@ -2,7 +2,7 @@ class StaticPagesController < ApplicationController
 
 
   def home
-    @items = Item.all
+    @items = Item.text_search(params[:query])
   end
 
 

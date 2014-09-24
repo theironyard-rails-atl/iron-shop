@@ -18,4 +18,16 @@ class Item < ActiveRecord::Base
   belongs_to :seller, class_name: "User"
   has_many :carts, through: :cart_items
   has_many :cart_items
+
+  include PgSearch
+  pg_search_scope :search, against: [:title, :description],
+    using: { tsearch: { dictionary: "english" } }
+
+  def self.text_search(query)
+    if query.present?
+      where("title @@ :q or description @@ :q", q: query)
+    else
+      all
+    end
+  end
 end
