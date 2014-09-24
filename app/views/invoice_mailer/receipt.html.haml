@@ -1,0 +1,5 @@
+%h1 You bought stuff!
+
+%ul
+  - @invoice.items.each do |item|
+    %li= item.title

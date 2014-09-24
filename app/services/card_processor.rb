@@ -16,8 +16,8 @@ class CardProcessor
       raise ProcessingError, e.message
     end
     note_payment
+    send_receipt
     # print receipt?
-    # send email?
   end
 
   class << self
@@ -68,5 +68,9 @@ private
   def note_payment
     @invoice.paid = true
     @invoice.save!
+  end
+
+  def send_receipt
+    InvoiceMailer.receipt(@invoice).deliver
   end
 end
