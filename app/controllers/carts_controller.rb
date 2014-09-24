@@ -1,6 +1,7 @@
 class CartsController < ApplicationController
   respond_to :json, except: [:show_cart, :add_cart]
   before_action :authenticate_user!
+  before_action :set_session, only: [:add_cart, :remove_cart]
   # before_action :dummy_data
 
 
@@ -47,5 +48,9 @@ class CartsController < ApplicationController
     gon.subtotal = @cart.subtotal
     gon.tax_rate = @cart.tax_rate
     gon.total = @cart.total
+  end
+
+  def set_session
+    session[:cart] ||= []
   end
 end

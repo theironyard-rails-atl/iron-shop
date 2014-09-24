@@ -49,6 +49,7 @@ group :test do
   gem 'launchy'
   gem 'simplecov'
   gem 'selenium-webdriver'
+  gem 'database_cleaner'
 end
 
 group :production do
