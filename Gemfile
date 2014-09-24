@@ -27,8 +27,8 @@ gem 'rails-assets-angular-bootstrap'
 
 
 group :development do
-  gem 'better_errors'
-  gem 'binding_of_caller'
+  # gem 'better_errors'
+  # gem 'binding_of_caller'
   gem 'quiet_assets'
   gem 'spring'
   gem 'spring-commands-rspec'
