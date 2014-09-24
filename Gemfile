@@ -2,8 +2,8 @@ source 'https://rubygems.org'
 
 ruby '2.1.2'
 
-gem 'rails'
-gem 'sass-rails', '~> 4.0.3'
+gem 'rails', '4.2.0.beta1'
+gem 'sass-rails', '~> 5.0.0.beta1'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'haml-rails'
@@ -12,7 +12,7 @@ gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
-gem 'devise'
+gem 'devise', git: 'https://github.com/plataformatec/devise.git', branch: 'lm-rails-4-2'
 gem 'cancancan'
 
 gem 'figaro'
