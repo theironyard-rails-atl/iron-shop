@@ -1,11 +1,17 @@
 class CardProcessor
+  class ProcessingError < StandardError ; end
+
   def initialize invoice, token
     @invoice, @token = invoice, token
   end
 
   def process
-    @customer = create_Stripe_customer
-    process_charge! @customer
+    begin
+      @customer = create_Stripe_customer
+      process_charge! @customer
+    rescue Stripe::CardError => e
+      raise ProcessingError, e.message
+    end
     note_payment
   end
 
