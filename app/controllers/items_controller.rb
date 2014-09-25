@@ -23,11 +23,23 @@ class ItemsController < ApplicationController
     end
   end
 
+  def price_watch
+    @watch = Watch.new price_watch_params
+      .merge(user_id: current_user.id, item_id: params[:id])
+    if @watch.save
+      flash[:notice] = "Price watch set"
+      redirect_to @watch.item
+    else
+      render_invalid @watch
+    end
+  end
+
   def new
     @item = Item.new
   end
 
   def show
+    @watch = Watch.new
     @item = Item.find params[:id]
   end
 
@@ -49,6 +61,10 @@ private
 
   def update_params
     params.require(:item).permit(:title, :description, :price)
+  end
+
+  def price_watch_params
+    params.require(:watch).permit(:price)
   end
 
 end

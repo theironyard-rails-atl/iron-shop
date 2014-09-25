@@ -4,6 +4,7 @@
   %h4= "$#{@item.price}"
   -if current_user.id == @item.seller_id
     %button.edit Edit Listing
+  %button.price-watch Set Price Watch
 
 .well.edit-form
   %h3 Edit your listing with the form below:
@@ -24,18 +25,37 @@
     %br
     %br
     = i.submit "Submit", class: "btn btn-primary"
-  %br
-  %button.btn.btn-alert.cancel Cancel
+  %button.btn.btn-alert.cancel-1 Cancel
+
+.well.price-watch-form
+  %h3 Set a price below. When the price drops below the amount you specify, an email notification will be sent.
+  = form_for(@watch, url: price_watch_item_path(@item), html: {method: "post"}) do |i|
+    = i.label :price
+    %br
+    = i.number_field :price
+    %br
+    %br
+    = i.submit "Submit", class: "btn btn-primary"
+  %button.btn.btn-alert.cancel-2 Cancel
 
 :javascript
   $(function() {
+    $('.price-watch-form').hide();
     $('.edit-form').hide();
+
     $('.edit').click(function(){
       $('.edit-form').show();
-      $('.show-item').hide();
     });
-    $('.cancel').click(function(){
+
+    $('.price-watch').click(function(){
+      $('.price-watch-form').show();
+    });
+
+    $('.cancel-1').click(function(){
       $('.edit-form').hide();
-      $('.show-item').show();
+    });
+
+    $('.cancel-2').click(function(){
+      $('.price-watch-form').hide();
     });
   });
