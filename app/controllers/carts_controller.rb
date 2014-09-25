@@ -10,13 +10,13 @@ class CartsController < ApplicationController
   def add
     item = Item.find params[:id]
     @cart.add params[:id]
-    redirect_to :back, alert: "#{item.title} was successfuly added to you cart!"
+    redirect_to :back, :flash => { :success => "#{item.title} was successfuly added to you cart!"}
   end
 
   def remove
     item = Item.find params[:id]
     @cart.remove params[:id]
-    redirect_to :back, alert: "#{item.title} was successfully removed from your cart"
+    redirect_to :back, :flash => { :success => "#{item.title} was successfully removed from your cart"}
   end
 
   def checkout
@@ -25,7 +25,7 @@ class CartsController < ApplicationController
       redirect_to @invoice
       @cart = []
     else
-      redirect_to :back, flash[:failure] => "Your checkout was successful"
+      redirect_to :back, :flash => { :failure => "Your checkout was successful" }
     end
   end
 
