@@ -1,16 +1,23 @@
 %h3 List An Item!
 
-= form_for @item, url: {action: "create"}, html: {class: "form"} do |i|
-  %p Title
-  = i.text_field :title
-  %br
-  %br
-  %p Description
-  = i.text_area :description
-  %br
-  %br
-  %p Price
-  = i.number_field :price
-  %br
-  %br
-  = i.submit "Submit", class: "btn btn-primary"
+-if current_user.role == 'seller'
+  = form_for @item, url: {action: "create"}, html: {class: "form"} do |i|
+    = i.label :title
+    %br
+    = i.text_field :title
+    %br
+    %br
+    = i.label :description
+    %br
+    = i.text_area :description
+    %br
+    %br
+    = i.label :price
+    %br
+    = i.number_field :price
+    %br
+    %br
+    = i.submit "Submit", class: "btn btn-primary"
+
+-else
+  %h3 You are not authorized to list items!
