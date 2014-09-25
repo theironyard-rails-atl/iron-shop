@@ -1,8 +1,7 @@
-%h1 Create New Item
+%h1 Edit Item
 =form_for @item do |f|
 
   .form_group
-    -# =f.label :content, "Item"
     =f.label :title, "Title"
     =f.text_field :title, class: "form-control"
     %br
@@ -12,4 +11,4 @@
     =f.label :price, "Price"
     =f.text_field :price, class: "form-control"
     %br
-    %button{:class => 'btn btn-default'}Create Item
+    %button{:class => 'btn btn-default'}Update Item
