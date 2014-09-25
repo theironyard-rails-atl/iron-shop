@@ -1,6 +1,6 @@
 %h1
-  #{@invoice.paid? ? 'Paid' : 'Not Paid'} Invoice
-  %small= @invoice.created_at
+  Your Cart
+  %small= @cart.created_at
 
 %table.table.table-striped
   %thead
@@ -8,17 +8,23 @@
       %th Item
       %th Price
   %tbody
-    - @invoice.items.each do |item|
+    - @cart.items.each do |item|
       %tr
         %td= item.title
         %td= item.price
     %tr 
+      %th Subtotal
+      %th= @cart.subtotal
+    %hr
+    %tr
       %th Total
-      %th= @invoice.amount
+      %th= @cart.total
+        
 
-=form_tag close_invoice_path(@invoice) do 
+=form_tag close_invoice_path(@cart) do 
   %script.stripe-button{ 'src' => 'https://checkout.stripe.com/checkout.js',
     'data-key' => ENV['STRIPE_PUBLIC_KEY'],
     'data-name' => 'Iron Shop',
-    'data-description' => "#{@invoice.items.count} items",
-    'data-amount' => @invoice.amount_in_cents }
+    'data-description' => "#{@cart.items.count} items",
+    'data-amount' => @cart.amount_in_cents }
+

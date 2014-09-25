@@ -2,7 +2,6 @@
 %p= @item.description.capitalize
 %p= number_to_currency(@item.price, precision: 2)
 
-
 - if current_user.is_watching?(@item)
   = form_tag watched_item_path(@item), method: :delete do
     = hidden_field_tag :id, @item.id
@@ -15,3 +14,7 @@
     %br
     = button_tag(type: 'submit', class: "btn btn-default") do
       %i.fa.fa-eye
+        
+=form_tag("/cart", method: "post") do
+  = hidden_field_tag :item_id, @item.id
+  = submit_tag "Add to Cart"
