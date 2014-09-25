@@ -1,5 +1,25 @@
 %h2
+  Change Role
+%br
+.col-lg-offset-4
+  = form_tag changerole_path, method: :post, class: "form btn-group-lg" do
+    - if current_user.shopper?
+      %input.shopperbtn.btn.btn-default{ type: "radio", name: "role", value: "shopper", checked: "check" } Shopping
+      %input.sellerbtn.btn.btn-default{ type: "radio", name: "role", value: "seller" } Selling
+    - elsif current_user.seller?
+      %input.shopperbtn.btn.btn-default{ type: "radio", name: "role", value: "shopper" } Shopping
+      %input.sellerbtn.btn.btn-default{ type: "radio", name: "role", value: "seller", checked: "check" } Selling
+    - else
+      %input.shopperbtn.btn.btn-default{ type: "radio", name: "role", value: "shopper" } Shopping
+      %input.sellerbtn.btn.btn-default{ type: "radio", name: "role", value: "seller" } Selling
+
+    %button.btn.btn-primary.pull-right Done
+%br
+%hr
+
+%h2
   Edit #{resource_name.to_s.humanize}
+%br
 = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }, class: "form") do |f|
   = devise_error_messages!
   .form-group
@@ -17,7 +37,9 @@
   .form-group
     = f.label :current_password
     = f.password_field :current_password, autocomplete: "off", class: "form-control"
-  = f.submit "Update", class: "btn btn-primary"
+  = f.submit "Update", class: "btn btn-primary pull-right"
+  %br
+  %hr
 
 %h3 Cancel my account
 %p
