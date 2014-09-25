@@ -5,7 +5,7 @@ class CardProcessor
 
   def process
     customer = Stripe::Customer.create(
-      :email => @invoice.user.email,
+      :email => @invoice.shopper.email,
       :card  => @token
     )
 

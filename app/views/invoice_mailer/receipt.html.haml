@@ -1,5 +1,13 @@
-%h1 You bought things! ...
+%h1 Here is your recent transaction with the Iron Shop
 
 %ul
-  - @invoice.items.each do |item|
-    %li item.title
+  - if @invoice
+    - @invoice.items.each do |item|
+      %li.row
+        .col-lg-6
+          = item.title
+        .col-lg-6
+          = item.price
+
+%hr
+%h2 Thank you for shopping with us.
