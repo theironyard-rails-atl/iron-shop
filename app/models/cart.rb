@@ -34,6 +34,6 @@ class Cart < ActiveRecord::Base
       invoice.items << item
     end
     invoice.amount = self.total
-    invoice.save!
+    invoice
   end
 end
