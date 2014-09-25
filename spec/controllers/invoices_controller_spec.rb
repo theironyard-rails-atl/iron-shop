@@ -16,7 +16,8 @@ describe InvoicesController, :js do
     post :create
     expect( Invoice.count ).to eq 1
     expect( session[:cart] ).to eq []
-    expect( @user.invoices.first.items.to_a ).to eq Item.find [1,2]
+    expect( Invoice.first.items.to_a ).to include Item.find 1
+    expect( Invoice.first.items.to_a ).to include Item.find 2
     expect( response ).to redirect_to invoice_path(Invoice.last)
     expect( flash[:notice]).to match(/^Successfully checked out/)
   end
