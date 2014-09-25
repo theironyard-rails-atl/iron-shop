@@ -11,6 +11,12 @@ Rails.application.routes.draw do
   get '/cart/add', to: 'carts#add'
   get '/cart/remove', to: 'carts#remove'
 
+  resources :invoices, only: [:show] do
+    member do
+      post :close
+    end
+  end
+
   root to: "static_pages#home"
 
 end

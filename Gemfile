@@ -21,6 +21,8 @@ gem 'cancancan'
 gem 'figaro'
 gem 'angular-rails'
 
+gem 'stripe'
+
 gem 'sidekiq'
 gem 'sinatra'
 

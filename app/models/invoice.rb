@@ -19,4 +19,8 @@ class Invoice < ActiveRecord::Base
   has_many :invoice_items
   has_many :items, through: :invoice_items
 
+  def amount_in_cents
+    (self.amount * 100).round()
+  end
+
 end
