@@ -1,7 +1,16 @@
 class ItemsController < ApplicationController
 
   def index
-    @items = Item.all
+    if params["search"]
+      search_results = PgSearch.multisearch params["search"]
+      item_ids = []
+      search_results.each do |result|
+        item_ids << result[:searchable_id]
+      end
+      @items = Item.all.where(:id => item_ids)
+    else
+      @items = Item.all
+    end
   end
 
   def create

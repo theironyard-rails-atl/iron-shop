@@ -6,5 +6,7 @@ class Item < ActiveRecord::Base
   validates_presence_of :price, :seller, :title
   validates :price, numericality: { greater_than_or_equal_to: 0 }
 
+  include PgSearch
+  multisearchable :against => [:title, :description]
 
 end
