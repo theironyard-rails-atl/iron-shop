@@ -1,3 +1,5 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
 
 
@@ -19,4 +21,10 @@ Rails.application.routes.draw do
 
   root to: "static_pages#home"
 
+  # authenticate :user, lambda { |u| u.admin? } do
+  #   mount Sidekiq::Web => '/sidekiq'
+  # end
+  authenticate :user do
+    mount Sidekiq::Web => '/sidekiq'
+  end
 end

@@ -16,6 +16,7 @@ gem 'pg'
 gem 'pg_search'
 
 gem 'devise'
+gem 'devise-async'
 gem 'cancancan'
 
 gem 'figaro'

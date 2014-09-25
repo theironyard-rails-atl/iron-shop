@@ -2,11 +2,11 @@ namespace :db do
   desc "Fill database with sample data"
   task populate: :environment do
     require 'faker'
-    make_users_and_items
+    make_users_and_items_and_invoices
   end
 end
 
-def make_users_and_items
+def make_users_and_items_and_invoices
   10.times do |n|
     User.create!(email: Faker::Internet.email,
       password: "password",
