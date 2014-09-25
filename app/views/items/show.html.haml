@@ -8,15 +8,18 @@
 .well.edit-form
   %h3 Edit your listing with the form below:
   = form_for(@item, url: item_path(@item), html: {method: "patch"}) do |i|
-    %p Title
+    = i.label :title
+    %br
     = i.text_field :title
     %br
     %br
-    %p Description
+    = i.label :description
+    %br
     = i.text_area :description
     %br
     %br
-    %p Price
+    = i.label :price
+    %br
     = i.number_field :price
     %br
     %br
