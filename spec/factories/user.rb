@@ -9,7 +9,9 @@ FactoryGirl.define do
     # v- DB column role
     role 'shopper'
   end
+
   trait :seller do
     role 'seller'
   end
+
 end

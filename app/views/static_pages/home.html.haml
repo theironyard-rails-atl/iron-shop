@@ -1,0 +1,25 @@
+%div#search_form
+  = form_tag root_path, method: 'GET', class: "form" do
+    .form-group.col-lg-11
+      %input.form-control#search_input{ type: 'text', name: 'search', placeholder: 'Search for items' }
+    = submit_tag 'Search', class: "btn btn-primary"
+%div#item_list.col-lg-12
+  %table.table.table-striped
+    %thead
+      %tr
+        %th Item Id#
+        %th Price
+        %th Title
+        %th Description
+    %tbody
+      - @items.each do |item|
+        %tr
+          %td
+            = item.id
+          %td
+            = item.price
+          %td
+            = item.title
+          %td
+            = item.description
+

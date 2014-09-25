@@ -14,7 +14,7 @@ FactoryGirl.factories.map(&:name).each do |factory_name|
 
   describe "Factory :#{factory_name} with trait" do
     FactoryGirl.factories[factory_name].definition.defined_traits.map(&:name).each do |trait_name|
-      it ":#{trait_name} is valid" do
+      it ":#{trait_name} is valid"  do
         factory = FactoryGirl.build(factory_name, trait_name)
         if factory.respond_to?(:valid?)
           expect(factory).to be_valid, lambda { factory.errors.full_messages.join(',') }

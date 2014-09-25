@@ -1,25 +1,28 @@
-!!!
-%html
+%html(ng-app="ironApp")
   %head
     %title
     = stylesheet_link_tag "//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"
     = stylesheet_link_tag "//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"
     = stylesheet_link_tag 'application', media: 'all'
 
-    = javascript_include_tag "//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"
-    = javascript_include_tag "//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"
     = javascript_include_tag 'application'
-
+    = include_gon
     = csrf_meta_tags
 
-  %body
+  %body(ng-controller="cartCtrl" )
     %nav.navbar.navbar-default
       .container
         .navbar-header
-          = link_to "", root_path, class: "navbar-brand"
+          = link_to "Home", root_path, class: "navbar-brand"
 
         %ul.nav.navbar-nav
-          / Main links will go here
+          %li
+            = link_to cart_path do
+              %span.glyphicon.glyphicon-shopping-cart
+              = '{{total | currency}}'
+          %li= link_to "Invoices", invoices_path
+          -#= '{{@cart.items.count}}'
+          -#= '{{@cart.total}}'
 
         %ul.nav.navbar-nav.pull-right
           - if current_user
