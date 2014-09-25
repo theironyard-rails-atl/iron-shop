@@ -1,0 +1,10 @@
+%h1 Items for Sale
+
+=form_tag({:controller=>"items", :action=>"index"}, :method=>'get') do
+  =text_field_tag :query, params[:query]
+  =submit_tag "Search"
+
+-@items.each do |item|
+  %h4=link_to item.title, item_path(item)  
+  %p= item.description
+  
