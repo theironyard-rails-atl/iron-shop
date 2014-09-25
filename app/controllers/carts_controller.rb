@@ -21,7 +21,7 @@ class CartsController < ApplicationController
 
   def checkout
     if @cart.checkout!
-      redirect_to:
+      redirect_to: invoice_path
 
   end
 
