@@ -1,17 +1,29 @@
 %h2
   Change Role
 %br
-.col-lg-offset-4
-  = form_tag changerole_path, method: :post, class: "form btn-group-lg" do
+.text-center
+  = form_tag changerole_path, method: :post, class: "btn-group" do
     - if current_user.shopper?
-      %input.shopperbtn.btn.btn-default{ type: "radio", name: "role", value: "shopper", checked: "check" } Shopping
-      %input.sellerbtn.btn.btn-default{ type: "radio", name: "role", value: "seller" } Selling
+      %label.btn.btn-default
+        %input{ type: "radio", name: "role", value: "shopper", checked: "check" }
+          Shopping
+      %label.btn.btn-default
+        %input{ type: "radio", name: "role", value: "seller" }
+          Selling
     - elsif current_user.seller?
-      %input.shopperbtn.btn.btn-default{ type: "radio", name: "role", value: "shopper" } Shopping
-      %input.sellerbtn.btn.btn-default{ type: "radio", name: "role", value: "seller", checked: "check" } Selling
+      %label.btn.btn-default
+        %input{ type: "radio", name: "role", value: "shopper" }
+          Shopping
+      %label.btn.btn-default
+        %input{ type: "radio", name: "role", value: "seller", checked: "check" }
+          Selling
     - else
-      %input.shopperbtn.btn.btn-default{ type: "radio", name: "role", value: "shopper" } Shopping
-      %input.sellerbtn.btn.btn-default{ type: "radio", name: "role", value: "seller" } Selling
+      %label.btn.btn-default
+        %input{ type: "radio", name: "role", value: "shopper" }
+          Shopping
+      %label.btn.btn-default
+        %input{ type: "radio", name: "role", value: "seller" }
+          Selling
 
     %button.btn.btn-primary.pull-right Done
 %br
