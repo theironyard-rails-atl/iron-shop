@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get '/cart', to: 'carts#show'
   get '/cart/add', to: 'carts#add'
   get '/cart/remove', to: 'carts#remove'
+  get '/cart/checkout', to: 'carts#checkout'
 
   resources :invoices, only: [:show] do
     member do
