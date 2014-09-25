@@ -5,10 +5,12 @@ class InvoicesController < ApplicationController
 
   def close
     @invoice = current_user.invoices.find params[:id]
-    CardProcessor.new( @invoice, params[:stripeToken] ).process
-
-  rescue Stripe::CardError => e
-    flash[:error] = e.message
-    redirect_to charges_path
+    begin
+      CardProcessor.new( @invoice, params[:stripeToken] ).process
+      flash[:success] = "Your payment was processed successfully"
+    rescue CardProcessor::ProcessingError => e
+      flash[:error] = e.message
+    end
+    redirect_to: @invoice
   end
 end
