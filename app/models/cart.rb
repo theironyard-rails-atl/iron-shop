@@ -23,13 +23,10 @@ class Cart < ActiveRecord::Base
     subtotal
   end
 
-
   def total
     total = self.subtotal * (1 + self.tax_rate)
     total.round(2)
   end
-
-
 
   def checkout!
     invoice = self.shopper.invoices.new
