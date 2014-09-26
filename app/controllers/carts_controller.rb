@@ -23,7 +23,6 @@ class CartsController < ApplicationController
     @invoice = @cart.checkout!
     if @invoice.save
       redirect_to @invoice
-      @cart = []
     else
       redirect_to :back, :flash => { :failure => "Your checkout was successful" }
     end

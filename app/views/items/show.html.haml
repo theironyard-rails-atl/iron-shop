@@ -7,7 +7,10 @@
         %button.btn.btn-default
           =link_to "Add to Cart", cart_add_path(id: @item)
       -if can? :manage, :items
-        %small
+        %button.btn.btn-default
           =link_to "Edit", edit_item_path
 
 %p= simple_format(@item.description)
+
+%br
+%br

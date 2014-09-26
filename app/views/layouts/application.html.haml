@@ -29,7 +29,8 @@
             - if can? :manage, :cart
               - current_user.carts.each do |cart|
                 %li.biggercart= link_to "", cart_path, class: "glyphicon glyphicon-shopping-cart"
-                %li= link_to "$#{cart.total.to_s}", cart_path
+                -if cart.subtotal.to_s != "0"
+                  %li= link_to "$#{cart.subtotal.to_s}", cart_path, :style => 'color: green;'
 
 
             %li= link_to current_user.email, edit_user_registration_path
