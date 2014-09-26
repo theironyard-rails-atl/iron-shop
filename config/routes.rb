@@ -9,7 +9,13 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :items
+  resources :items do
+    member do
+      post :watch, to: 'watched_items#create'
+    end
+  end
+
+  resources :watched_items, only: [:index, :create, :destroy, :show]
 
   get '*path' => 'static_pages#home'
 end
