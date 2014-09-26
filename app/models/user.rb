@@ -26,5 +26,10 @@ class User < ActiveRecord::Base
   has_many :bought_items, through: :invoice, source: :items
   has_many :sold_items, source: :items, class_name: "Item"
   has_many :invoices
+  has_many :watched_items
   ROLES= %i[shopper seller admin banned]
+
+  def is_watching?(item)
+    watched_items.where(item: item).exists?
+  end
 end
