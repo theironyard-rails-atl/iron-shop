@@ -19,5 +19,5 @@
     - @items.each do |item|
       %tr
         %td= link_to item.title, item_path(item)
-        %td= strip_tags(item.description.truncate(200))
+        %td= strip_tags(item.description.truncate(100))
         %td= "$#{item.price}"
