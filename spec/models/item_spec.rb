@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: items
+#
+#  id          :integer          not null, primary key
+#  title       :string(255)
+#  description :text
+#  price       :float
+#  seller_id   :integer
+#  created_at  :datetime
+#  updated_at  :datetime
+#
+
 require 'rails_helper'
 
 describe Item do

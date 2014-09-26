@@ -13,3 +13,20 @@
  *= require_tree .
  *= require_self
  */
+
+.biggercart {
+    font-size: 1.5em;
+}
+
+
+
+.hr_icon {
+  width: 18px;
+  height: 18px;
+  overflow: hidden;
+  zoom: 1; cursor: pointer;
+  background-image: url(/assets/nicEditorIcons.gif);
+  background-position: -72px 0px;
+  display: inline-block;
+  margin-bottom: -6px;
+}

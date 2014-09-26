@@ -12,11 +12,29 @@ gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
+gem 'pg'
+gem 'pg_search'
+
+gem "paperclip", "~> 4.2"
+gem 'aws-sdk'
+
+
 gem 'devise'
+gem 'devise-async'
 gem 'cancancan'
 
+gem 'figaro'
+gem 'angular-rails'
+
+gem 'stripe'
+
+gem 'sidekiq'
+gem 'sinatra'
+
 group :development do
+  gem 'annotate'
   gem 'better_errors'
+  gem 'letter_opener'
   gem 'binding_of_caller'
   gem 'pry-rails'
   gem 'quiet_assets'

@@ -16,14 +16,23 @@
     %nav.navbar.navbar-default
       .container
         .navbar-header
-          = link_to "", root_path, class: "navbar-brand"
+          = link_to "Iron Shop", root_path, class: "navbar-brand"
 
         %ul.nav.navbar-nav
-          / Main links will go here
 
         %ul.nav.navbar-nav.pull-right
           - if current_user
             / Signed in
+            - if can? :manage, :items
+              %li= link_to "Post Item", new_item_path
+
+            - if can? :manage, :cart
+              - current_user.carts.each do |cart|
+                %li.biggercart= link_to "", cart_path, class: "glyphicon glyphicon-shopping-cart"
+                -if cart.subtotal.to_s != "0"
+                  %li= link_to "$#{cart.subtotal.to_s}", cart_path, :style => 'color: green;'
+
+
             %li= link_to current_user.email, edit_user_registration_path
             %li= link_to "Log out", destroy_user_session_path, method: :delete
           - else
