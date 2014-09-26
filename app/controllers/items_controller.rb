@@ -2,7 +2,11 @@
 class ItemsController < ApplicationController
   def index
     authorize! :read, Item
-    @items = Item.all
+      @items = if params[:query].present?
+      Item.search_by_item(params[:query])
+    else
+      Item.all
+    end
   end
 
   def show

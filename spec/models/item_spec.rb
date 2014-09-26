@@ -28,4 +28,15 @@ describe Item do
     # expect( item ).not_to be_valid ~> valid?
     expect( item.valid? ).to be false
   end
+
+  it 'searches an item by title' do
+    item = create :item
+    expect( Item.search_by_item(item.title)).to include item
+  end
+
+  it 'searches an item by description' do
+    item = create :item
+    expect( Item.search_by_item(item.description)).to include item
+  end
+
 end

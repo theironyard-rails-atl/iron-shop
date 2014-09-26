@@ -20,6 +20,7 @@ gem 'omniauth-google-oauth2'
 gem 'pg'
 gem 'stripe'
 gem 'letter_opener'
+gem 'pg_search'
 
 group :production do
   gem 'rails_12factor'
