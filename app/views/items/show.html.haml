@@ -9,8 +9,11 @@
       -if can? :manage, :items
         %button.btn.btn-default
           =link_to "Edit", edit_item_path
+.row
+  .col-md-4
+    = image_tag @item.avatar.url(:medium), :class => "img-rounded img-responsive"
+  .col-md-8
+    %p= simple_format(@item.description)
 
-%p= simple_format(@item.description)
-
-%br
-%br
+    %br
+    %br
