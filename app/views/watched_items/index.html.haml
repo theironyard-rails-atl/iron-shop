@@ -1,0 +1,22 @@
+%h1 Watched Items
+-if @watched_items
+  %table.table.table-striped
+    %thead
+      %th Item
+      %th Description
+      %th Price
+      %th Stop Watching
+    %tbody
+    -@watched_items.each do |watched_item|
+      %tr
+        %td=watched_item.item.title.capitalize
+        %td=watched_item.item.description
+        %td=number_to_currency(watched_item.item.price, precision: 2)
+        %td
+          =form_tag watched_item_path(watched_item.item), method: :delete do
+            =hidden_field_tag :id, watched_item.item.id
+            -# -binding.pry
+            =button_tag(type: 'submit', class: "btn btn-danger") do
+              %i.fa.fa-times
+
+      %tr
