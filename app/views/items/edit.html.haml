@@ -9,4 +9,7 @@
     =p.label :price
     =p.text_field :price, placeholder: '0.00', class: "form-control"
 
-  =p.submit
+  =p.submit "Update Item", {:class => "btn btn-default"}
+
+:javascript
+  bkLib.onDomLoaded(nicEditors.allTextAreas);
