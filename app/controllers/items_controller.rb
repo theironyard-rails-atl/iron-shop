@@ -21,7 +21,7 @@ class ItemsController < ApplicationController
 
   def create
     authorize! :create, Item
-    @item = current_user.sold_items.create(create_params)
+    @item = current_user.sold_items.create(item_params)
     if @item.save
       redirect_to @item, notice: "Successful"
     else
@@ -31,9 +31,31 @@ class ItemsController < ApplicationController
 
   end
 
+  def edit
+    authorize! :edit, Item
+    @item = Item.find(params[:id])
+  end
+
+  def update
+    authorize! :modify, Item
+    @item = Item.find(params[:id])
+    if @item.update(item_params)
+      redirect_to @item, notice: "Successful"
+      send_price_watch(@item, current_user) #TODO change current_user to subscribed price watch users
+    else
+      flash[:danger] = "Item could not be updated."
+      render 'edit'
+    end
+  end
+
+
   private
 
-    def create_params
+    def item_params
       params.require(:item).permit(:title, :description, :price)
+    end
+
+    def send_price_watch(item, user)
+      ItemMailer.price_watch(item, user).deliver
     end
 end

@@ -37,4 +37,7 @@ Rails.application.configure do
 
   # Config for Devise
   config.action_mailer.default_url_options = { host: 'localhost:3000' }
+
+  #Mailer Config
+  config.action_mailer.delivery_method = :letter_opener
 end
