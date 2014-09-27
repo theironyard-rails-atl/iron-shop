@@ -1,8 +1,8 @@
 %h1 PriceWatch!
 
 %ul
-  =@item.title
+  =@item.item.title
   %p
     Current Price:
-    =number_to_currency(@item.price, precision: 2)
-  =link_to @item.title, item_url(@item)
+    =number_to_currency(@item.item.price, precision: 2)
+  =link_to @item.item.title, item_url(@item.item)
