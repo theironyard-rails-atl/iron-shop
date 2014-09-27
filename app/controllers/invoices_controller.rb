@@ -15,6 +15,8 @@ class InvoicesController < ApplicationController
 
  def add_to_cart
    @cart.add params[:item_id]
+   item = Item.find params[:item_id]
+   flash[:success] = "#{item.title} has been added to your cart"
    redirect_to :back
  end
 

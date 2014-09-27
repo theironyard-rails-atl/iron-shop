@@ -1,20 +1,23 @@
-%h1= @item.title.capitalize
-%p= @item.description.capitalize
-%p= number_to_currency(@item.price, precision: 2)
+.item
+  .well
+    %h1= @item.title.capitalize
+    %p= @item.description.capitalize
+    %p
+      %strong= number_to_currency(@item.price, precision: 2)
 
-- if current_user.is_watching?(@item)
-  = form_tag watched_item_path(@item), method: :delete do
-    = hidden_field_tag :id, @item.id
-    %br
-      = button_tag(type: 'submit', class: "btn btn-success") do
+  - if current_user.is_watching?(@item)
+    = form_tag watched_item_path(@item), method: :delete, class:'search' do
+      = hidden_field_tag :id, @item.id
+      %br
+        = button_tag(type: 'submit', class: "btn btn-success") do
+          %i.fa.fa-eye
+
+  - else
+    = form_tag watch_item_path(@item), method: :post, class:'search' do
+      %br
+      = button_tag(type: 'submit', class: "btn btn-default") do
         %i.fa.fa-eye
-
-- else
-  = form_tag watch_item_path(@item), method: :post do
-    %br
-    = button_tag(type: 'submit', class: "btn btn-default") do
-      %i.fa.fa-eye
-        
-=form_tag("/cart", method: "post") do
-  = hidden_field_tag :item_id, @item.id
-  = submit_tag "Add to Cart"
+          
+  =form_tag("/cart", method: "post") do
+    = hidden_field_tag :item_id, @item.id
+    = submit_tag "Add to Cart", class:'btn btn-warning'
