@@ -21,6 +21,8 @@ gem 'pg'
 gem 'stripe'
 gem 'letter_opener'
 gem 'pg_search'
+gem 'sucker_punch', '~> 1.0'
+
 
 group :production do
   gem 'rails_12factor'

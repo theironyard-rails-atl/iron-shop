@@ -3,6 +3,6 @@ class ItemMailer < ActionMailer::Base
   def price_watch item, user
     @item = item
     @user = user
-    mail to: @user.email, subject: "PriceWatch Message for: #{@item.title}"
+    mail to: @user.email, subject: "PriceWatch Message for: #{@item.item.title}"
   end
 end

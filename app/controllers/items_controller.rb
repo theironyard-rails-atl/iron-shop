@@ -40,15 +40,22 @@ class ItemsController < ApplicationController
   def update
     authorize! :modify, Item
     @item = Item.find(params[:id])
+    @current_price = @item.price
     if @item.update(item_params)
+      price_check(@item, @current_price)
+      # send_price_watch(@item)
       redirect_to @item, notice: "Successful"
-      send_price_watch(@item, current_user) #TODO change current_user to subscribed price watch users
     else
       flash[:danger] = "Item could not be updated."
       render 'edit'
     end
   end
 
+  def price_check(item, current_price)
+    if current_price != item.price
+      send_price_watch(@item)
+    end
+  end
 
   private
 
@@ -56,7 +63,10 @@ class ItemsController < ApplicationController
       params.require(:item).permit(:title, :description, :price)
     end
 
-    def send_price_watch(item, user)
-      ItemMailer.price_watch(item, user).deliver
+    def send_price_watch(item)
+      @watched_items = WatchedItem.where(item_id: item.id)
+      @watched_items.each do |watched|
+        PriceWatcherJob.new.async.perform(watched, watched.user)
+      end
     end
 end
