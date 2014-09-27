@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   def get_cart
    if current_user 
       @cart = current_user.invoices.where(cart_active: true ).first
-      Invoice.create(user: current_user) if @cart.blank?
+      @cart = Invoice.create(user: current_user) if @cart.blank?
     end
   end
 

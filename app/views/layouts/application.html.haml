@@ -19,7 +19,10 @@
           = link_to "Iron Shop", root_path, class: "navbar-brand" 
         %ul.nav.navbar-nav.pull-right
           %li= link_to "For Sale", items_path 
-          %li= link_to "My Watch List", watched_items_path
+          -if seller? 
+            %li= link_to "Post an Item", new_item_path
+          -if shopper?
+            %li= link_to "My Watch List", watched_items_path
           %li.dropdown
             %a.btn-btn-default.dropdown-toggle{id:"dropdownMenu1", "data-toggle"=> 'dropdown'}
               Profile Options
@@ -33,30 +36,31 @@
                 / Not signed in
                 %li= link_to "Log in", new_user_session_path
                 %li= link_to "Sign up", new_user_registration_path
-          %li.dropdown
-            %a.btn-btn-default.dropdown-toggle{id:"dropdownMenu2", "data-toggle"=> 'dropdown'}
-              %i.fa.fa-shopping-cart
-                -if current_user && @cart
-                  %span.badge= @cart.items.count 
-                -else
-                  %span.badge= 0
-            %ul.dropdown-menu.dropdown-menu-right.cart{role:'menu', 'aria-labelledby'=>'dropdownMenu2'}
-              - if current_user && @cart.items.count > 0
-                %table.table.table-striped
-                  %tbody
-                    -@cart.items.each do |item|
+          -if shopper?
+            %li.dropdown
+              %a.btn-btn-default.dropdown-toggle{id:"dropdownMenu2", "data-toggle"=> 'dropdown'}
+                %i.fa.fa-shopping-cart
+                  -if current_user && @cart
+                    %span.badge= @cart.items.count 
+                  -else
+                    %span.badge= 0
+              %ul.dropdown-menu.dropdown-menu-right.cart{role:'menu', 'aria-labelledby'=>'dropdownMenu2'}
+                - if current_user && !@cart.blank?
+                  %table.table.table-striped
+                    %tbody
+                      -@cart.items.each do |item|
+                        %tr
+                          %td
+                            %h5= link_to item.title, item, class: "cart"
+                          %td
+                            %h5= item.price
                       %tr
-                        %td
-                          %h5= link_to item.title, item, class: "cart"
-                        %td
-                          %h5= item.price
-                    %tr
-                      %td Total
-                      %td= @cart.subtotal
-                %hr
-                = link_to "View Cart", cart_path, class: "btn btn-warning pull-right"
-              - else
-                %h5.center-cart Your Cart Is Empty
+                        %td Total
+                        %td= @cart.subtotal
+                  %hr
+                  = link_to "View Cart", cart_path, class: "btn btn-warning pull-right"
+                - else
+                  %h5.center-cart Your Cart Is Empty
     .container
       .flash
         - flash.each do |name, msg|
