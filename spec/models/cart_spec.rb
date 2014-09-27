@@ -41,4 +41,5 @@ describe Cart do
   end
 
   it 'can apply coupons before checking out'
+  it 'displays number of items in cart in the nav bar'
 end

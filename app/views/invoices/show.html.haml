@@ -12,9 +12,9 @@
       %tr
         %td= item.title
         %td= item.price
-      %tr 
-        %th Total
-        %th= @invoice.amount
+    %tr 
+      %th Total
+      %th= @invoice.amount
 
 =form_tag close_invoice_path(@invoice) do 
   %script.stripe-button{ 'src' => 'https://checkout.stripe.com/checkout.js',
