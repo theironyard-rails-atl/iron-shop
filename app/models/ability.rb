@@ -8,16 +8,11 @@ class Ability
     
     if user.role == "seller"
       can :manage, Item, user_id: user.id
-        #binding.pry
-        #item.user_id == user.id
-      #end
       can :read, Item
     end
 
     if user.role == "shopper"
-      can :buy, Invoice do |invoice|
-        invoice.user_id == user.id
-      end
+      can :buy, Invoice, user_id: user.id
       can :read, Item
     end
 

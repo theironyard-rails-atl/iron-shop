@@ -1,5 +1,6 @@
-
 class ItemsController < ApplicationController
+  #before_action :get_cart
+  
   def index
     authorize! :read, Item
       @items = if params[:query].present?

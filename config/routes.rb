@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   end
 
   resources :watched_items, only: [:index, :create, :destroy, :show]
+  get '/cart' => 'invoices#show_cart'
+  post '/cart' => 'invoices#add_to_cart'
 
   get '*path' => 'static_pages#home'
 end

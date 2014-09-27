@@ -10,6 +10,14 @@ class Cart
     @items << item
   end
 
+  def remove item 
+    @items.pop item
+  end
+
+  def clear
+    @items = []
+  end
+
   def subtotal
     @items.reduce(0) do |total,item|
       total +=  item.price

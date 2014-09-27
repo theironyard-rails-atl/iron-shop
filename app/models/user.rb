@@ -27,6 +27,7 @@ class User < ActiveRecord::Base
   has_many :sold_items, source: :items, class_name: "Item"
   has_many :invoices
   has_many :watched_items
+  validates_presence_of :role
   ROLES= %i[shopper seller admin banned]
 
   def is_watching?(item)
