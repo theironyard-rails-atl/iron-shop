@@ -13,3 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+//
+// Tooltip for Bootstrap not working. 
+// $(function(){
+//   $('.tooltp').tooltip();
+// });

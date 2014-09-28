@@ -57,6 +57,14 @@ class ItemsController < ApplicationController
     end
   end
 
+  def my_items
+    authorize! :modify, Item
+      @items = if params[:query].present?
+      current_user.sold_items.search_by_item(params[:query])
+    else
+      current_user.sold_items
+    end
+  end
   private
 
     def item_params

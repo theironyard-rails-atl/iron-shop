@@ -13,6 +13,9 @@ Rails.application.routes.draw do
     member do
       post :watch, to: 'watched_items#create'
     end
+    collection do 
+      get :my_items
+    end
   end
 
   resources :watched_items, only: [:index, :create, :destroy, :show]

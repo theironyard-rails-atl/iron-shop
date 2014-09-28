@@ -22,4 +22,8 @@ module ApplicationHelper
       current_user.role == 'seller' || current_user.role == 'admin'
     end
   end
+
+  def btn_color
+    %w(primary success info warning danger).sample
+  end
 end

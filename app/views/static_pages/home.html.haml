@@ -1,11 +1,30 @@
 .jumbotron
-  %h1 Welcome to The Iron Shop!
+  %h1 
+    Welcome to The Iron Shop!
+    %i.fa.fa-shopping-cart.pull-right
+    %i.fa.fa-credit-card.pull-right
   %h3.txtdec
     -if current_user
-      = "We Currently Have #{@items.count} Items to Shop for."
-      = link_to "Please Enjoy!", items_path
+      We Currently Stock
+      .label.label-primary=@items.count
+      Different Items.
+      = link_to "Click Here to Browse!", items_path, class:'btn btn-success btn-lg pull-right'
     -else
       %h3 Please Sign in before shopping our amazing items.
       = link_to "Log In", new_user_session_path, class:"btn btn-success btn-lg"
       = link_to "Sign Up", new_user_registration_path, class: 'btn btn-primary btn-lg'
+.col-lg-12
+  %marquee{"scrollamount" => "7", "behavior" => 'alternate'}
+    %h4 Check Out Some of Our Trending Items!!! We Accept All Major Credit Cards. Sorry, we currently do not accept PayPal.
+    %br
+-@items.sample(3).each do |item|
+  .col-lg-4.well
+    %table.table.table-striped
+      %tbody
+        %tr
+          %h4.txtdec.item=link_to item.title.titleize, item
+        %tr
+          %p= item.description
+        %tr
+          .pull-right.botright= number_to_currency item.price
 
