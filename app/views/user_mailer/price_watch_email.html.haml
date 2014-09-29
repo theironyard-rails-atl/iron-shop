@@ -1,0 +1,7 @@
+%h3 All of the items below now meet your price watch criteria.
+
+- @watches.each do |watch|
+  %h4= watch.item.title
+  %p= "This item's price is now $#{watch.item.price}"
+  %br
+  %br
