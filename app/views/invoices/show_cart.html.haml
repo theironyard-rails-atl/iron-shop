@@ -1,29 +1,30 @@
-%h1
-  ="#{@cart.user.email}'s Cart"
+%h1.center-cart
+  ="Your Cart has #{pluralize(@cart.items.length, 'Item')}"
+.col-lg-3
+.col-lg-6
+  %table.table.table-striped
+    %thead
+      %tr
+        %th Item
+        %th Price
+    %tbody
+      - @cart.items.each do |item|
+        %tr.txtdec
+          %td= link_to item.title, item
+          %td= number_to_currency item.price
+      %tr 
+        %th Subtotal
+        %th=number_to_currency @cart.subtotal
+      %hr
+      %tr
+        %th Total
+        %th= number_to_currency @cart.total
+          
 
-%table.table.table-striped
-  %thead
-    %tr
-      %th Item
-      %th Price
-  %tbody
-    - @cart.items.each do |item|
-      %tr.txtdec
-        %td= link_to item.title, item
-        %td= number_to_currency item.price
-    %tr 
-      %th Subtotal
-      %th=number_to_currency @cart.subtotal
-    %hr
-    %tr
-      %th Total
-      %th= number_to_currency @cart.total
-        
-
-=form_tag close_invoice_path(@cart) do 
-  %script.stripe-button{ 'src' => 'https://checkout.stripe.com/checkout.js',
-    'data-key' => ENV['STRIPE_PUBLIC_KEY'],
-    'data-name' => 'Iron Shop',
-    'data-description' => "#{@cart.items.count} items",
-    'data-amount' => @cart.amount_in_cents }
+  =form_tag close_invoice_path(@cart) do 
+    %script.stripe-button{ 'src' => 'https://checkout.stripe.com/checkout.js',
+      'data-key' => ENV['STRIPE_PUBLIC_KEY'],
+      'data-name' => 'Iron Shop',
+      'data-description' => "#{@cart.items.count} items",
+      'data-amount' => @cart.amount_in_cents }
 

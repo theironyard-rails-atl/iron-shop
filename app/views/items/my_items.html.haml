@@ -1,10 +1,10 @@
-%h1 Items for Sale
+%h1 My Posted Items
 
 =form_tag({:controller=>"items", :action=>"index" }, :method=>'get', class:'search') do
   =text_field_tag :query, params[:query]
   =submit_tag "Search", class: 'btn btn-info'
 
--@items.sample(@items.length).each do |item|
+-@items.reverse.each do |item|
   .col-lg-4.well
     .panel-panel-success
       .panel-heading
