@@ -1,0 +1,15 @@
+%h2 Watches
+
+%div#item_list.col-lg-12
+  %table.table.table-striped
+    %thead
+      %tr
+        %th Item
+        %th Notify Price
+    %tbody
+      - @watches.each do |watch|
+        %tr
+          %td
+            = watch.item.title
+          %td
+            = watch.price

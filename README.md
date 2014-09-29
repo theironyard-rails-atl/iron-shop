@@ -1,3 +1,5 @@
+
+[![Build Status](https://travis-ci.org/TIY-iron-shop/iron-shop.png?branch=master)](https://travis-ci.org/TIY-iron-shop/iron-shop)
 # Iron Shop
 
 This will be another week-long project, similar to last week's. This time, we will be building a simple storefront. Planned class topics for the week:
