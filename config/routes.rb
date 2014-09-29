@@ -1,12 +1,13 @@
 Rails.application.routes.draw do
+  require 'sidekiq/web'
+
   devise_for :users
   root to: "items#index"
 
-  resources :items, only: [:index, :new, :create, :update, :show] do
-    member do
-      post :price_watch
-    end
-  end
+  mount Sidekiq::Web => '/sidekiq'
+
+  resources :items, only: [:index, :new, :create, :update, :show]
+  resources :watches, only: [:index, :create, :update, :destroy]
 
   scope '/cart' do
     get "/" => "carts#show_cart", :as => "cart"

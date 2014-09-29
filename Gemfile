@@ -11,6 +11,10 @@ gem 'haml-rails'
 gem 'figaro'
 gem 'gon'
 gem 'bullet'
+gem 'sinatra', '>= 1.3.0', :require => nil
+
+gem 'sidekiq'
+gem 'sidetiq'
 
 
 gem 'jbuilder', '~> 2.0'
@@ -34,6 +38,7 @@ group :development do
   gem 'spring'
   gem 'spring-commands-rspec'
   gem 'annotate'
+  gem 'letter_opener'
 end
 
 group :development, :test do

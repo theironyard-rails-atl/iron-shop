@@ -29,7 +29,8 @@
 
 .well.price-watch-form
   %h3 Set a price below. When the price drops below the amount you specify, an email notification will be sent.
-  = form_for(@watch, url: price_watch_item_path(@item), html: {method: "post"}) do |i|
+  = form_for(@watch, url: watches_path, html: {method: "post"}) do |i|
+    = i.hidden_field :item_id, value: @item.id
     = i.label :price
     %br
     = i.number_field :price
