@@ -3,9 +3,10 @@
   %head
     %title
     = stylesheet_link_tag "//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"
-    = stylesheet_link_tag "//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"
+    = stylesheet_link_tag "//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"
     = stylesheet_link_tag 'application', media: 'all'
-
+    = stylesheet_link_tag 'href'=>'http://fonts.googleapis.com/css?family=Play', 'rel'=>'stylesheet', 'type'=>'text/css' # Google Fonts
+    
     = javascript_include_tag "//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"
     = javascript_include_tag "//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"
     = javascript_include_tag 'application'
@@ -16,21 +17,52 @@
     %nav.navbar.navbar-default
       .container
         .navbar-header
-          = link_to "", root_path, class: "navbar-brand"
-
-        %ul.nav.navbar-nav
-          / Main links will go here
-
+          = link_to "Iron Shop", root_path, class: "navbar-brand" 
         %ul.nav.navbar-nav.pull-right
-          - if current_user
-            / Signed in
-            %li= link_to current_user.email, edit_user_registration_path
-            %li= link_to "Log out", destroy_user_session_path, method: :delete
-          - else
-            / Not signed in
-            %li= link_to "Log in", new_user_session_path
-            %li= link_to "Sign up", new_user_registration_path
-
+          %li= link_to "For Sale", items_path 
+          -if seller? 
+            %li= link_to "Post an Item", new_item_path
+            %li= link_to "My Items", my_items_items_path
+          -if shopper?
+            %li= link_to "My Watch List", watched_items_path
+          %li.dropdown
+            %a.btn-btn-default.dropdown-toggle{id:"dropdownMenu1", "data-toggle"=> 'dropdown'}
+              Profile Options
+              %b.caret
+            %ul.dropdown-menu.dropdown-menu-right{role:'menu', 'aria-labelledby'=>"dropdownMenu1"}
+              - if current_user
+                / Signed in
+                %li= link_to "Edit Account", edit_user_registration_path
+                %li= link_to "Log out", destroy_user_session_path, method: :delete
+              - else
+                / Not signed in
+                %li= link_to "Log in", new_user_session_path
+                %li= link_to "Sign up", new_user_registration_path
+          -if shopper?
+            %li.dropdown
+              %a.btn-btn-default.dropdown-toggle{id:"dropdownMenu2", "data-toggle"=> 'dropdown'}
+                %i.fa.fa-shopping-cart
+                  -if current_user && @cart
+                    %span.badge= @cart.items.count 
+                  -else
+                    %span.badge= 0
+              %ul.dropdown-menu.dropdown-menu-right.cart{role:'menu', 'aria-labelledby'=>'dropdownMenu2'}
+                - if current_user && !@cart.blank?
+                  %table.table.table-striped
+                    %tbody
+                      -@cart.items.each do |item|
+                        %tr
+                          %td
+                            %h5= link_to item.title, item, class: "cart"
+                          %td
+                            %h5= item.price
+                      %tr
+                        %td Total
+                        %td= @cart.subtotal
+                  %hr
+                  = link_to "View Cart", cart_path, class: "btn btn-warning pull-right"
+                - else
+                  %h5.center-cart Your Cart Is Empty
     .container
       .flash
         - flash.each do |name, msg|

@@ -1,0 +1,14 @@
+%h1 Edit Item
+=form_for @item do |f|
+
+  .form_group
+    =f.label :title, "Title"
+    =f.text_field :title, class: "form-control"
+    %br
+    =f.label :description, "Description"
+    =f.text_area :description, class: "form-control"
+    %br
+    =f.label :price, "Price"
+    =f.text_field :price, class: "form-control"
+    %br
+    %button{:class => 'btn btn-default'}Update Item

@@ -14,8 +14,22 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'devise'
 gem 'cancancan'
+gem 'figaro'
+gem 'omniauth'
+gem 'omniauth-google-oauth2'
+gem 'pg'
+gem 'stripe'
+gem 'letter_opener'
+gem 'pg_search'
+gem 'sucker_punch', '~> 1.0'
+
+
+group :production do
+  gem 'rails_12factor'
+end
 
 group :development do
+  gem 'annotate'
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'pry-rails'
@@ -25,7 +39,6 @@ group :development do
 end
 
 group :development, :test do
-  gem 'sqlite3'
   gem 'factory_girl_rails', require: false
   gem 'faker'
   gem 'rspec-rails'

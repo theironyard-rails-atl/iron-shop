@@ -13,3 +13,51 @@
  *= require_tree .
  *= require_self
  */
+
+body{
+  font-family: 'Play'; 
+}
+
+.center-cart {
+  text-align: center;
+}
+
+h5 a:link {
+  text-decoration: none;
+}
+
+.cart{
+  min-width: 300px;
+}
+
+.col-lg-4{
+  text-overflow: ellipsis;
+}
+
+.price{
+  float:right;
+}
+
+.search {
+  margin-bottom: 2%;
+}
+
+.item {
+  text-align: center;
+}
+
+.txtdec a:link {
+  text-decoration: none;
+}
+
+.botright{
+  position: absolute;
+  margin: 2% 7%;
+  bottom: 0;
+  right: 0;
+}
+
+.col-lg-12 {
+  margin: -1%;
+}
+

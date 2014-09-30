@@ -1,0 +1,17 @@
+%h1 Items for Sale
+
+=form_tag({:controller=>"items", :action=>"index" }, :method=>'get', class:'search') do
+  =text_field_tag :query, params[:query]
+  =submit_tag "Search", class: 'btn btn-info'
+
+-@items.sample(@items.length).each do |item|
+  .col-lg-4.well
+    .panel-panel-success
+      .panel-heading
+        %h5.panel-title.price= number_to_currency item.price
+        %h4.panel-title=link_to item.title, item_path(item)  
+      .panel-body
+        %p= truncate(item.description, length: 50, separator: ' ')
+        // truncate is for limiting string length
+        = link_to "Learn More", item, class:"btn btn-#{btn_color} pull-right"
+  

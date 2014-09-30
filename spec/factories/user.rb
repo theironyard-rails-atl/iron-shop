@@ -3,6 +3,7 @@ FactoryGirl.define do
     sequence(:email) { |n| "user#{n}@example.com" }
     password "awfulPass"
     password_confirmation "awfulPass"
+    role "shopper"
   end
 
   trait :shopper do
@@ -11,5 +12,11 @@ FactoryGirl.define do
   end
   trait :seller do
     role 'seller'
+  end
+  trait :admin do
+    role 'admin'
+  end
+  trait :banned do
+    role 'banned'
   end
 end

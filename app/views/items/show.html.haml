@@ -1,0 +1,27 @@
+.item
+  .col-lg-3
+  .well.col-lg-6
+    %h1= @item.title.capitalize
+    %p= @item.description.capitalize
+    %p
+      %strong= number_to_currency(@item.price, precision: 2)
+
+    -if shopper? 
+      - if current_user.is_watching?(@item)
+        = form_tag watched_item_path(@item), method: :delete, class:'search' do
+          = hidden_field_tag :id, @item.id
+          %br
+            = button_tag(type: 'submit', class: "btn btn-success tooltp", "data-togele" => 'tooltip', 'data-placement' => 'right', "title" =>"Remove from Price Watch List") do
+              %i.fa.fa-eye
+      - else
+        = form_tag watch_item_path(@item), method: :post, class:'search' do
+          %br
+          %hr
+          = button_tag(type: 'submit', class: "btn btn-default tooltp", "data-toggle" => 'tooltip', 'data-placement' => 'right', "title" =>"Add to Price Watch List") do
+            %i.fa.fa-eye
+              
+      =form_tag("/cart", method: "post") do
+        = hidden_field_tag :item_id, @item.id
+        = submit_tag "Add to Cart", class:'btn btn-warning'
+    -if seller? && current_user.sold_items.include?(@item)
+      =link_to "Edit This Item", edit_item_path(@item), class:'btn btn-info btn-lg'
