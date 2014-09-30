@@ -1,5 +1,4 @@
 require 'rails_helper'
-
 describe Cart do
   before :each do
     @shopper = create :user, :shopper

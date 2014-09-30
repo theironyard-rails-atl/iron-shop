@@ -16,7 +16,6 @@ class Invoice < ActiveRecord::Base
   validates_presence_of :user, :amount
 
   def amount_in_cents
-    total
     (amount * 100).to_s.to_i
   end
 

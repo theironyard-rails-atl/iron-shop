@@ -13,6 +13,11 @@
 require 'rails_helper'
 
 describe Invoice do
+  before :each do
+    @shopper = create :user, :shopper
+    @invoice = create :invoice, user: @shopper
+  end
+
   %i(user amount).each do |field|
     it "requires a #{field}" do
       invoice = build :invoice, field => nil
@@ -25,4 +30,9 @@ describe Invoice do
     3.times { invoice.items << create(:item) }
     expect( invoice.items.count ).to eq 3
   end
+
+  it 'has an active cart on creation' do 
+    expect(@invoice.cart_active).to be true
+  end 
+
 end

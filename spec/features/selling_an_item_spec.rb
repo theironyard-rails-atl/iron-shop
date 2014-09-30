@@ -27,6 +27,34 @@ feature 'Selling' do
   end
 
   # Add further CanCan authorization specs
+  it 'allows sellers to edit an item' do
+    seller = create(:user, :seller)
+    item = create(:item, seller: seller)
+    login seller
+    visit edit_item_path item
+
+    fill_in "Title", with: "help"
+    fill_in "Description", with: "No"
+    fill_in "Price", with: "3"
+
+    click_button "Update Item"
+
+    expect(page).to have_content "Successful" 
+  end
+
+  it 'errors on incorrect updateitems' do
+    seller = create(:user, :seller)
+    item = create(:item, seller: seller)
+    login seller
+    visit edit_item_path item
+
+    fill_in "Price", with: "no worky"
+
+    click_button "Update Item"
+
+    expect(page).to have_content "Item could not be updated"
+
+  end
   it 'allows sellers to delete posted items they own'
   it 'does not allow sellers to delete other sellers items'
 end
